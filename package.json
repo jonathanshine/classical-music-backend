@@ -1,0 +1,33 @@
+{
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cookie-parser": "^1.4.5",
+    "cors": "^2.8.5",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "faker": "^5.5.3",
+    "http-errors": "^1.8.0",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.13.10"
+  },
+  "scripts": {
+    "start": "node server.js"
+  },
+  "name": "classical-music-backend",
+  "description": "Backend for musical study tool app, aChord, built with Express.js and Mongoose.",
+  "version": "1.0.0",
+  "main": "server.js",
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jonathanshine/classical-music-backend.git"
+  },
+  "type": "module",
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/jonathanshine/classical-music-backend/issues"
+  },
+  "homepage": "https://github.com/jonathanshine/classical-music-backend#readme"
+}
