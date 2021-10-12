@@ -13,7 +13,7 @@
   },
   "scripts": {
     "start": "node server.js",
-    "seed": "node seed.js"
+    "comp-seed": "node ./seeds/composerSeed.js"
   },
   "name": "classical-music-backend",
   "description": "Backend for musical study tool app, aChord, built with Express.js and Mongoose.",
