@@ -1,7 +1,8 @@
 // IMPORTS ------------------------------------------
 import express from 'express';
 import cors from 'cors';
-import "./db-connect.js";
+import './db-connect.js';
+import usersRouter from './routes/usersRouter.js';
 // --------------------------------------------------
 
 
@@ -21,12 +22,14 @@ app.use( cors() );
 app.get("/", (req, res) => {
     res.send(`<h1>aChord Backend</h1>`)
 });
+
+app.use("/users", usersRouter);
 // --------------------------------------------------
 
 
 const PORT = 5000;
 app.listen(PORT, () => {
-    console.log(`App listening at http://localhost:.${PORT}`);
+    console.log(`App listening at http://localhost:${PORT}`);
 });
 
 
