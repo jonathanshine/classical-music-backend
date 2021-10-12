@@ -1,7 +1,7 @@
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
-import Composer from './models/Composer.js';
-import "./db-connect.js";
+import Composer from '../models/Composer.js';
+import "../db-connect.js";
 import fetch from "node-fetch";
 
 dotenv.config();
