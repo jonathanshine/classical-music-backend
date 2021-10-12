@@ -2,7 +2,8 @@ import mongoose from 'mongoose';
 const { Schema, model } = mongoose;
 
 const ComposerSchema = new Schema({
-  name:String
+  name:String,
+  works: [{ type: Schema.Types.ObjectId, ref: "Work", required: false }]
 },{
   strict:false,
   versionKey: false
