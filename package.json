@@ -8,10 +8,12 @@
     "faker": "^5.5.3",
     "http-errors": "^1.8.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.13.10"
+    "mongoose": "^5.13.10",
+    "node-fetch": "^3.0.0"
   },
   "scripts": {
-    "start": "node server.js"
+    "start": "node server.js",
+    "seed": "node seed.js"
   },
   "name": "classical-music-backend",
   "description": "Backend for musical study tool app, aChord, built with Express.js and Mongoose.",
