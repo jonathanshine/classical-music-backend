@@ -13,6 +13,7 @@
   },
   "scripts": {
     "start": "node server.js",
+    "comp-seed": "node seeds/composerSeed.js",
     "user-seed": "node seeds/userSeed.js"
   },
   "name": "classical-music-backend",

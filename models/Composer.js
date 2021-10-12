@@ -3,7 +3,7 @@ const { Schema, model } = mongoose;
 
 const ComposerSchema = new Schema({
   name:String,
-  works: [{ type: Schema.Types.ObjectId, ref: "Work", required: false }]
+  // works: [{ type: Schema.Types.ObjectId, ref: "Work", required: false }]
 },{
   strict:false,
   versionKey: false
