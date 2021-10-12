@@ -3,6 +3,7 @@ import express from 'express';
 import cors from 'cors';
 import './db-connect.js';
 import usersRouter from './routes/usersRouter.js';
+import composersRouter from './routes/composersRouter.js';
 // --------------------------------------------------
 
 
@@ -24,6 +25,8 @@ app.get("/", (req, res) => {
 });
 
 app.use("/users", usersRouter);
+
+app.use("/composers", composersRouter)
 // --------------------------------------------------
 
 
