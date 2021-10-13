@@ -7,7 +7,7 @@ import Composer from '../models/Composer.js';
 // METHODS ------------------------------------------
 export const getAllComposers = async (req, res, next) => {
     try {
-        const composers = await Composer.find();
+        const composers = await Composer.find().select("-works");
         res.json( composers );
     } catch (error) {
         next( error )
@@ -17,7 +17,7 @@ export const getAllComposers = async (req, res, next) => {
 export const getOneComposer = async (req, res, next) => {
     try {
         const { id } = req.params;
-        const composer = await Composer.findById( id );
+        const composer = await Composer.findById( id ).populate("works");
         if(!composer) throw new createError(404, `No composer with id --> ${id} was found`);
         res.json( composer );
     } catch (error) {

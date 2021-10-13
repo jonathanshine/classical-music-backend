@@ -29,7 +29,7 @@ export const createUser = async (req, res, next) => {
     const data = req.body;
     
     try {
-        const user = new User( data );
+        const user = await User.create( data );
         res.json( user );
     } catch (error) {
         next( error );
