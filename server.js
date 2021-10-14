@@ -1,6 +1,7 @@
 // IMPORTS ------------------------------------------
 import express from 'express';
 import cors from 'cors';
+import cookieParser from 'cookie-parser';
 import './db-connect.js';
 import usersRouter from './routes/usersRouter.js';
 import composersRouter from './routes/composersRouter.js';
@@ -16,7 +17,9 @@ const app = express();
 // MIDDLEWARE ---------------------------------------
 app.use( express.json() );
 
-app.use( cors() );
+app.use( cors({ origin: "http://localhost:3000", credentials: true }) );
+
+app.use( cookieParser() );
 // --------------------------------------------------
 
 
