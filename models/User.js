@@ -1,8 +1,12 @@
 // IMPORTS ------------------------------------------
 import mongoose from 'mongoose';
-const { Schema, model } = mongoose;
+import jwt from 'jsonwebtoken';
+import dotenv from 'dotenv';
 // --------------------------------------------------
 
+const { Schema, model } = mongoose;
+
+dotenv.config();
 
 // SCHEMA -------------------------------------------
 const UserSchema = new Schema({
@@ -35,6 +39,18 @@ const UserSchema = new Schema({
     versionKey: false,
     timestamps: true
 });
+// --------------------------------------------------
+
+
+// METHODS/STATICS -----------------------------------
+UserSchema.methods.generateAuthToken = function () {
+    const user = this;
+    const token = jwt.sign({ _id: user._id }, process.env.JWT_PASS, {
+        expiresIn: '3h'
+    });
+    console.log(`We created a cookie token for user ${user._id} --> ${token}`);
+    return token;
+};
 // --------------------------------------------------
 
 
