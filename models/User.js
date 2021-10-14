@@ -2,6 +2,7 @@
 import mongoose from 'mongoose';
 import jwt from 'jsonwebtoken';
 import dotenv from 'dotenv';
+import bcrypt from 'bcryptjs';
 // --------------------------------------------------
 
 const { Schema, model } = mongoose;
@@ -51,6 +52,16 @@ UserSchema.methods.generateAuthToken = function () {
     console.log(`We created a cookie token for user ${user._id} --> ${token}`);
     return token;
 };
+// --------------------------------------------------
+
+
+// HASHING ------------------------------------------
+UserSchema.pre("save", function(next) {
+    const user = this;
+    if(!user.isModified("password")) return next();
+    user.password = bcrypt.hashSync(user.password, 10);
+    next();
+});
 // --------------------------------------------------
 
 

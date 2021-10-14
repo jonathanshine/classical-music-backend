@@ -1,13 +1,14 @@
 // IMPORTS ------------------------------------------
 import createError from 'http-errors';
 import User from '../models/User.js';
+import bcrypt from 'bcryptjs';
 // --------------------------------------------------
 
 
 // METHODS ------------------------------------------
 export const getAllUsers = async (req, res, next) => {
     try {
-        const users = await User.find().select("-password");
+        const users = await User.find(); // .select("-password");
         res.json( users );
     } catch (error) {
         next( error );
@@ -29,7 +30,10 @@ export const createUser = async (req, res, next) => {
     const data = req.body;
     
     try {
-        const user = await User.create( data );
+        
+        const user = new User(data);
+        const savedUser = await user.save();
+        
 
         const token = user.generateAuthToken();
 
@@ -38,13 +42,15 @@ export const createUser = async (req, res, next) => {
             expires: new Date(Date.now() + 10800000),
             sameSite: "lax",
             secure: true
-        }).json( user );
+        }).json( savedUser );
     } catch (error) {
         next( error );
     };
 };
 
 export const updateUser = async (req, res, next) => {
+    // need to add hashing in case of password change
+    
     try {
         const { id } = req.params;
         const updateData = req.body;
@@ -80,6 +86,9 @@ export const loginUser = async (req, res, next) => {
         const { email, password } = req.body;
         const user = await User.findOne({ email }).populate("favorites", "composers works");
         if (!user) throw new createError(404, "Invalid email");
+
+        const passwordIsValid = bcrypt.compareSync(password, user.password);
+        if (!passwordIsValid) next( createError(404, "Invalid password"));
 
         const token = user.generateAuthToken();
 
