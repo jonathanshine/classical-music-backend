@@ -52,6 +52,20 @@ UserSchema.methods.generateAuthToken = function () {
     console.log(`We created a cookie token for user ${user._id} --> ${token}`);
     return token;
 };
+
+UserSchema.statics.findByToken = function (token) {
+  const User = this;
+
+
+  try {
+    // Verify the token
+    let decoded = jwt.verify(token, process.env.JWT_PASS);
+    // See if a user with that id exists
+    return User.findOne({ _id: decoded._id });
+  } catch (error) {
+    return;
+  }
+};
 // --------------------------------------------------
 
 

@@ -26,6 +26,10 @@ export const getOneUser = async (req, res, next) => {
     };
 };
 
+export const verifyCookie = (req, res) => {
+  res.send(req.user);
+};
+
 export const createUser = async (req, res, next) => {
     const data = req.body;
     
