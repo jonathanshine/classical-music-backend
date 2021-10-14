@@ -30,7 +30,15 @@ export const createUser = async (req, res, next) => {
     
     try {
         const user = await User.create( data );
-        res.json( user );
+
+        const token = user.generateAuthToken();
+
+        res.cookie("token", token, {
+            httpOnly: true,
+            expires: new Date(Date.now() + 10800000),
+            sameSite: "lax",
+            secure: true
+        }).json( user );
     } catch (error) {
         next( error );
     };
